@@ -17,7 +17,7 @@ set $right l
 set $term alacritty 
 
 # Preferred browser
-set $browser librewolf
+set $browser brave-browser
 
 # Preferred file manager
 set $file_m nemo
@@ -28,18 +28,23 @@ set $clip_man gpaste-client ui
 # Preferred search tool
 set $search catfish
 
+# Preferred code editor
+
+set $code code
+
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 
 #Preferred application launcher
 set $menu wofi --show=drun --allow-images
 
-
+#Preferred lock aplication
+set $locker swaylock
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Photos/Wallpapers/wallpaperbetter.com_1920x1080.jpg fill
+output * bg ~/Pictures/Wallpapers/Carina_Nebula.jpg fill
 #
 # Example configuration:
 #
@@ -108,7 +113,12 @@ input 1:1:AT_Translated_Set_2_keyboard repeat_delay 300
 
     # Search a file
     bindsym $mod+Shift+f exec $search
+    
+    # Lock the screen
+    bindsym $mod+Ctrl+l exec $locker
 
+    # Start your code editor
+    bindsym $mod+c exec $code
     # Take a screenshot
     #bindsym Print exec grim -g "$(slurp)" -t png - | wl-copy -t image/png
     bindsym --release Print exec grimshot copy screen
@@ -276,8 +286,9 @@ gaps outer 3
 default_border pixel 2 # disable window titlebar
 
 # Backlight control
-bindsym $mod+i exec --no-startup-id brightlight -i 20
-bindsym $mod+o exec --no-startup-id brightlight -d 20
+bindsym $mod+i exec brightnessctl set +5%
+bindsym $mod+o exec brightnessctl set 5%- 
+
 include /etc/sway/config.d/*
 
 # Make Sway a dynamic WM (improve tiling)
